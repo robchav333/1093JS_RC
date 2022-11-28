@@ -3,7 +3,7 @@ body {
 	background-color: #000;
 	color: #fff;
 	font-family: Monospace;
-	font-size: 13px;
+	font-size: 18px;
 	line-height: 24px;
 	overscroll-behavior: none;
 }
@@ -46,7 +46,7 @@ a, button, input, select {
 }
 
 @media all and ( max-width: 640px ) {
-	.lil-gui.root { 
+	.lil-gui.root {
 		right: auto;
 		top: auto;
 		max-height: 50%;
