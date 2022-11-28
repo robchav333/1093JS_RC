@@ -56,6 +56,8 @@ const objects = [];
 			flowY: 1
 		};
 
+
+
 		init();
 		animate();
 
@@ -63,9 +65,36 @@ const objects = [];
 
 		function init() {
 
-			// scene
+
 
 			scene = new THREE.Scene();
+
+
+			var mesh;
+			//GLTF MODEL
+			const loader = new GLTFLoader().load(
+		 "./jsm/FISHWEB.glb", // comment this line out and un comment the line below to swithc models
+		 //"./assets/gourd_web.glb", //<-- photogrammetery model
+		 function(gltf) {
+			 // Scan loaded model for mesh and apply defined material if mesh is present
+			 gltf.scene.traverse(function(child) {
+				 if (child.isMesh) {
+					 //child.material = newMaterial;
+				 }
+			 });
+				 // set position and scale
+				 mesh = gltf.scene;
+				 mesh.position.set(450, 500, 300);
+				 mesh.rotation.set(0, 0, 0);
+				 mesh.scale.set(12, 12, 12); // <-- change this to (1, 1, 1) for photogrammetery model
+				 // Add model to scene
+				 scene.add(mesh);
+			 },
+			 undefined,
+			 function(error) {
+				 console.error(error);
+			 }
+		 );
 
 			// camera
 
@@ -130,31 +159,31 @@ const objects = [];
 			water.rotation.x = Math.PI * -0.5;
 			scene.add(water);
 
-			var mesh;
-			//GLTF MODEL
-			const loader = new GLTFLoader().load(
-		 "../assets/FISHWEB.glb", // comment this line out and un comment the line below to swithc models
-		 //"./assets/gourd_web.glb", //<-- photogrammetery model
-		 function(gltf) {
-			 // Scan loaded model for mesh and apply defined material if mesh is present
-			 gltf.scene.traverse(function(child) {
-				 if (child.isMesh) {
-					 //child.material = newMaterial;
-				 }
-			 });
-				 // set position and scale
-				 mesh = gltf.scene;
-				 mesh.position.set(450, 500, 300);
-				 mesh.rotation.set(0, 0, 0);
-				 mesh.scale.set(12, 12, 12); // <-- change this to (1, 1, 1) for photogrammetery model
-				 // Add model to scene
-				 scene.add(mesh);
-			 },
-			 undefined,
-			 function(error) {
-				 console.error(error);
-			 }
-		 );
+			// var mesh;
+			// //GLTF MODEL
+			// const loader = new GLTFLoader().load(
+		 // "../assets/FISHWEB.glb", // comment this line out and un comment the line below to swithc models
+		 // //"./assets/gourd_web.glb", //<-- photogrammetery model
+		 // function(gltf) {
+			//  // Scan loaded model for mesh and apply defined material if mesh is present
+			//  gltf.scene.traverse(function(child) {
+			// 	 if (child.isMesh) {
+			// 		 //child.material = newMaterial;
+			// 	 }
+			//  });
+			// 	 // set position and scale
+			// 	 mesh = gltf.scene;
+			// 	 mesh.position.set(450, 500, 300);
+			// 	 mesh.rotation.set(0, 0, 0);
+			// 	 mesh.scale.set(12, 12, 12); // <-- change this to (1, 1, 1) for photogrammetery model
+			// 	 // Add model to scene
+			// 	 scene.add(mesh);
+			//  },
+			//  undefined,
+			//  function(error) {
+			// 	 console.error(error);
+			//  }
+		 // );
 
 			// skybox
 
