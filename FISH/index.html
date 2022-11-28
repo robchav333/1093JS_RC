@@ -42,13 +42,13 @@
 		} from 'three/addons/Water2.js';
 		import {
 			GLTFLoader
-		} from 'three/addons/GLTFLoader.js';
+		} from 'three/addons/GLTFloader.js';
 
-		let scene, camera, clock, renderer, water;
+		let scene, camera, clock, renderer, water, material;
 
 		// let torusKnot;
 
-
+const objects = [];
 		const params = {
 			color: '#ffffff',
 			scale: 4,
@@ -58,6 +58,8 @@
 
 		init();
 		animate();
+
+
 
 		function init() {
 
@@ -78,31 +80,7 @@
 			// mesh
 			;
 
-			// var mesh;
-			// //GLTF MODEL
-			// const loader = new GLTFLoader();
-			// loader.load('./assets/FISHWEB.glb',
-			// 	function(gltf) {
-			//
-			// 		gltf.scene.traverse(function(child) {
-			// 			if (child.isMesh) {
-			// 				objects.push(child);
-			// 			}
-			// 		});
-			// 		// set position and scale
-			// 		mesh = gltf.scene;
-			// 		mesh.position.set(100, -100, 100);
-			// 		mesh.rotation.set(0, 0, 0);
-			// 		mesh.scale.set(20, 20, 20); // <-- change this to (1, 1, 1) for photogrammetery model
-			// 		// Add model to scene
-			// 		scene.add(mesh);
-			//
-			// 	}, undefined,
-			// 	function(error) {
-			//
-			// 		console.error(error);
-			//
-			// 	});
+
 
 
 			// const torusKnotGeometry = new THREE.TorusKnotGeometry( 3, 1, 256, 32 );
@@ -115,26 +93,26 @@
 
 			// ground
 
-			const groundGeometry = new THREE.PlaneGeometry(20, 20);
-			const groundMaterial = new THREE.MeshStandardMaterial({
-				roughness: 0.8,
-				metalness: 0.4
-			});
-			const ground = new THREE.Mesh(groundGeometry, groundMaterial);
-			ground.rotation.x = Math.PI * -0.5;
-			scene.add(ground);
-
-			const textureLoader = new THREE.TextureLoader();
-			textureLoader.load('textures/hardwood2_diffuse.jpg', function(map) {
-
-				map.wrapS = THREE.RepeatWrapping;
-				map.wrapT = THREE.RepeatWrapping;
-				map.anisotropy = 16;
-				map.repeat.set(4, 4);
-				groundMaterial.map = map;
-				groundMaterial.needsUpdate = true;
-
-			});
+			// const groundGeometry = new THREE.PlaneGeometry(20, 20);
+			// const groundMaterial = new THREE.MeshStandardMaterial({
+			// 	roughness: 0.8,
+			// 	metalness: 0.4
+			// });
+			// const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+			// ground.rotation.x = Math.PI * -0.5;
+			// scene.add(ground);
+			//
+			// const textureLoader = new THREE.TextureLoader();
+			// textureLoader.load('textures/hardwood2_diffuse.jpg', function(map) {
+			//
+			// 	map.wrapS = THREE.RepeatWrapping;
+			// 	map.wrapT = THREE.RepeatWrapping;
+			// 	map.anisotropy = 16;
+			// 	map.repeat.set(4, 4);
+			// 	groundMaterial.map = map;
+			// 	groundMaterial.needsUpdate = true;
+			//
+			// });
 
 			// water
 
@@ -151,6 +129,32 @@
 			water.position.y = 1;
 			water.rotation.x = Math.PI * -0.5;
 			scene.add(water);
+
+			// var mesh;
+			// //GLTF MODEL
+			// const loader = new GLTFloader().load(
+		 // "./jsm/FISHWEB.glb", // comment this line out and un comment the line below to swithc models
+		 // //"./assets/gourd_web.glb", //<-- photogrammetery model
+		 // function(gltf) {
+			//  // Scan loaded model for mesh and apply defined material if mesh is present
+			//  gltf.scene.traverse(function(child) {
+			// 	 if (child.isMesh) {
+			// 		 //child.material = newMaterial;
+			// 	 }
+			//  });
+			// 	 // set position and scale
+			// 	 mesh = gltf.scene;
+			// 	 mesh.position.set(450, 500, 300);
+			// 	 mesh.rotation.set(0, 0, 0);
+			// 	 mesh.scale.set(12, 12, 12); // <-- change this to (1, 1, 1) for photogrammetery model
+			// 	 // Add model to scene
+			// 	 scene.add(mesh);
+			//  },
+			//  undefined,
+			//  function(error) {
+			// 	 console.error(error);
+			//  }
+		 // );
 
 			// skybox
 
