@@ -159,6 +159,12 @@
    margin-bottom: 50px;
  }
 
+ p {
+   color: white;
+   font-size: 20px;
+   margin-bottom: 50px;
+ }
+
  h4 {
    color: #fcfc;
    letter-spacing: 2px;
